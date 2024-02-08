@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\library;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,8 @@ class libraryController extends Controller
     // index function
     public function index(){
         // return 'hi';
-        $books =library::all();
+        $books = Book::orderBy('id', 'DESC')->paginate(4);
+
         return view('books.index', compact('books'));
     }
 
@@ -34,14 +36,14 @@ class libraryController extends Controller
             'return_date' => 'required|string|max:60',
         ]);
 
-        library::create($allBooks);
+        Book::create($allBooks);
         return redirect()->back()->withSuccess('data successfully save');
     }
 
     // show function
     public function show($id){
         // return 'hi';
-        $books =library::findOrFail($id);
+        $books =Book::findOrFail($id);
 
         return view('books.show', compact('books'));
     }
@@ -49,13 +51,13 @@ class libraryController extends Controller
     // edit function
     public function edit($id){
         // return 'hi';
-        $books =library::findOrFail($id);
+        $books =Book::findOrFail($id);
         return view('books.edit', compact('books'));
     }
 
     // update function
     public function update(Request $request, $id){
-        $books =library::findOrFail($id);
+        $books =Book::findOrFail($id);
 
         $allBooks = $request->validate([
             'book_name' => 'required|string|max:60',
@@ -72,7 +74,7 @@ class libraryController extends Controller
 
     // delete function
     public function destroy($id){
-        $books =library::findOrFail($id);
+        $books =Book::findOrFail($id);
         $books->delete();
 
         return redirect()->back()->withSuccess('data deleted');

@@ -13,14 +13,10 @@
 
 <body>
     <div class="container">
-            <div class="mt-3">
-                <a href="{{ url('/') }}" class="btn btn-success">Home</a>
+        
+        @include('allMenu') 
 
-                <a href=" {{ route('books.create') }}" class="btn btn-success">Add Book</a>
-
-                <a href="{{ route('books.index') }}" class="btn btn-warning">See All Books</a>
-            </div>
-        <h4 class="text-center mt-5">This is our Laibary Booking System</h4>
+        <h4 class="text-center mt-5">Welcome to our Laibary Booking System</h4>
     </div>
 
      {{-- bootstarp js cdn --}}

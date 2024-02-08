@@ -8,13 +8,14 @@
     {{-- bootstarp cdn link --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Show All Books</title>
+    <title>Show All Student</title>
 </head>
 
 <body>
     <div class="container">
-        
+
         @include('allMenu') 
+
 
         @if (Session::has('success'))
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -23,31 +24,36 @@
             </div>
         @endif
 
-        <h3 class="text-center mt-5">Book Information</h3>
+        <h3 class="text-center mt-5">Student Information</h3>
 
         <div class="row">
-            <div class="col-md-2">Book Name :</div>
-            <div class="col-md-4"> {{ $books->book_name }}</div>
+            <div class="col-md-2"></div>
+            <div class="col-md-4"> <img class="w-50" src="{{ asset('storage/'. $students->image) }}" alt=""></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-2">Name :</div>
+            <div class="col-md-4"> {{ $students->name }}</div>
         </div>
 
         <div class="row">
-            <div class="col-md-2">Book Type :</div>
-            <div class="col-md-4"> {{ $books->book_type }}</div>
+            <div class="col-md-2">Phone:</div>
+            <div class="col-md-4"> {{ $students->phone }}</div>
         </div>
 
         <div class="row">
-            <div class="col-md-2">Writer Name :</div>
-            <div class="col-md-4"> {{ $books->writer_name }}</div>
+            <div class="col-md-2">Department:</div>
+            <div class="col-md-4"> {{ $students->department }}</div>
         </div>
 
         <div class="row">
-            <div class="col-md-2">Issue Date :</div>
-            <div class="col-md-4"> {{ $books->issue_date }}</div>
+            <div class="col-md-2">Semester :</div>
+            <div class="col-md-4"> {{ $students->semester }}</div>
         </div>
 
         <div class="row">
-            <div class="col-md-2">Return Date :</div>
-            <div class="col-md-4"> {{ $books->return_date }}</div>
+            <div class="col-md-2">Image :</div>
+            <div class="col-md-4"> {{ $students->image }}</div>
         </div>
 
     </div>

@@ -8,7 +8,7 @@
     {{-- bootstarp cdn link --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Book</title>
+    <title>distribution</title>
 </head>
 
 <body>
@@ -22,37 +22,35 @@
             </div>
         @endif
 
-        <h2 class="text-center mt-5">See Our All Books</h2>
+        <h2 class="text-center mt-5">See Our All distributions</h2>
 
         <table class="table">
             <thead>
                 <tr>
                     <th>Sl No</th>
+                    <th>Student Name</th>
                     <th>Book Name</th>
-                    <th>Book Type</th>
-                    <th>Writer Name</th>
                     <th>Issue Date</th>
                     <th>Return Date</th>
                     <th>Action</th>
-                    {{-- <th>Total Books</th> --}}
+                    {{-- <th>Total distributions</th> --}}
                 </tr>
             </thead>
 
             <tbody>
-                @foreach ($books as $book)
+                @foreach ($distributions as $distribution)
                     <tr>
                         <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $book->book_name }}</td>
-                        <td>{{ $book->book_type }}</td>
-                        <td>{{ $book->writer_name }}</td>
-                        <td>{{ $book->issue_date }}</td>
-                        <td>{{ $book->return_date }}</td>
+                        <td>{{ $distribution->student?->name }}</td>
+                        <td>{{ $distribution->book->book_name }}</td>
+                        <td>{{ $distribution->issue_date }}</td>
+                        <td>{{ $distribution->return_date }}</td>
                         <td>
-                            <a href="{{ route('books.show', $book->id) }}"class="btn btn-info">Show</a>
+                            <a href="{{ route('distribution.show', $distribution->id) }}"class="btn btn-info">Show</a>
 
-                            <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('distribution.edit', $distribution->id) }}" class="btn btn-warning">Edit</a>
 
-                            <a href="{{ route('books.delete', $book->id) }}" class="btn btn-danger"
+                            <a href="{{ route('distribution.destroy', $distribution->id) }}" class="btn btn-danger"
                                 onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
                         </td>
                     </tr>
@@ -60,7 +58,7 @@
             </tbody>
         </table>
         
-      {{ $books->links() }}
+      {{ $distributions->links() }}
       
     </div>
 

@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\DistributionController;
 use App\Http\Controllers\libraryController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +42,14 @@ Route::post('/book/update/{id}', [LibraryController::class, 'update'])->name('bo
 
 // route of delete
 Route::get('/book/delete/{id}', [LibraryController::class, 'destroy'])->name('books.delete');
+
+// route for student
+Route::resource('student', StudentController::class);
+
+// route for distribution
+Route::resource('distribution', DistributionController::class);
+
+// Route::resource('users', UserController::class);
+// Route::resource('roles', RoleController::class);
+Route::resource('user', UserController::class);
+Route::resource('role',RoleController::class);

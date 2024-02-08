@@ -5,7 +5,7 @@
 
     <title>Library </title>
 
-    {{-- bootstarp cdn link --}}
+   <!-- bootstarp cdn link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -14,8 +14,9 @@
 <body>
     <div class="container">
 
-        @include('allMenu')
+        @include('allMenu') 
 
+       
         @if (Session::has('success'))
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong> {{ Session::get('success') }}</strong>
@@ -23,91 +24,91 @@
             </div>
         @endif
 
-        <h4 class="text-center mt-5">Update library Books </h4>
+        <h4 class="text-center mt-5">Update Student </h4>
 
-        <form action="{{ route('books.update', $books->id) }}" method="post">
+        <form action="{{ route('student.update', $students->id) }}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('PATCH') 
 
-            {{-- book name --}}
+            <!--  name -->
             <div class="row mt-3">
                 <div class="col-md-2">
-                    <label for="book_name">Book Name :</label>
+                    <label for="name">Name :</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="book_name" value="{{ old('book_name', $books->book_name) }}"
-                        id="book_name" class="form-control">
+                    <input type="text" name="name" value="{{ old('name', $students->name) }}" id="name" class="form-control">
                 </div>
                 <div class="col-md-4">
-                    @error('book_name')
+                    @error('name')
                         <small class="alert alert-danger">{{ $message }}</small>
                     @enderror
                 </div>
             </div>
 
-            {{-- book type --}}
+            <!-- Phone -->
             <div class="row mt-3">
                 <div class="col-md-2">
-                    <label for="book_type">Book Type :</label>
+                    <label for="phone">Phone :</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="book_type" value="{{ old('book_type', $books->book_type) }}"
-                        id="book_type" class="form-control">
+                    <input type="text" name="phone" value="{{ old('phone', $students->phone) }}" id="phone" class="form-control">
                 </div>
                 <div class="col-md-4">
-                    @error('book_type')
+                    @error('phone')
                         <small class="alert alert-danger">{{ $message }}</small>
                     @enderror
                 </div>
             </div>
 
-            {{-- writer name --}}
+            <!-- Department -->
             <div class="row mt-3">
                 <div class="col-md-2">
-                    <label for="writer_name">Writer Name :</label>
+                    <label for="department">Department :</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="writer_name" value="{{ old('writer_name', $books->writer_name) }}"
-                        id="writer_name" class="form-control">
+                    <input type="text" name="department" value="{{ old('department', $students->department) }}" id="department" class="form-control">
                 </div>
                 <div class="col-md-4">
-                    @error('writer_name')
+                    @error('department')
                         <small class="alert alert-danger">{{ $message }}</small>
                     @enderror
                 </div>
             </div>
 
-            {{-- issue date --}}
+            <!-- Semester -->
             <div class="row mt-3">
                 <div class="col-md-2">
-                    <label for="issue_date">Issue Date :</label>
+                    <label for="semester">Semester :</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="date" name="issue_date" value="{{ old('issue_date', $books->issue_date) }}"
-                        id="issue_date" class="form-control">
+                    <input type="text" name="semester" value="{{ old('semester', $students->semester) }}" id="semester" class="form-control">
                 </div>
                 <div class="col-md-4">
-                    @error('issue_date')
+                    @error('semester')
                         <small class="alert alert-danger">{{ $message }}</small>
                     @enderror
                 </div>
             </div>
 
-            {{-- return date --}}
+           <!-- Image -->
             <div class="row mt-3">
                 <div class="col-md-2">
-                    <label for="return_date">Return Date :</label>
+                    <label for="image">Image :</label>
                 </div>
                 <div class="col-md-4">
-                    <input type="date" name="return_date" value="{{ old('return_date', $books->return_date) }}"
-                        id="return_date" class="form-control">
+                    <input type="file" name="image" value="{{ old('image', $students->image) }}" id="image" class="form-control">
+                </div> 
+                <div class="col-lg-4">
+                    <img class="w-25" src="{{ asset('storage/'.$students->image) }}" alt="{{ $students->name . '`s ima ' }}"> 
                 </div>
                 <div class="col-md-4">
-                    @error('return_date')
+                    @error('image')
                         <small class="alert alert-danger">{{ $message }}</small>
                     @enderror
                 </div>
             </div>
-            {{-- button --}}
+
+            <!-- button-->
             <div class="row mt-3">
                 <div class="col-md-2"></div>
                 <div class="col-md-4">
@@ -117,12 +118,12 @@
             </div>
         </form>
 
-        {{-- bootstarp js cdn --}}
+        <!-- bootstarp js cdn -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
 </body>
 
 </html>

@@ -13,11 +13,8 @@
 
 <body>
     <div class="container">
-        <div class="mt-3">
-            <a href="{{ url('/') }}" class="btn btn-success">Home</a>
-            <a href=" {{ route('books.create') }}" class="btn btn-success">Add Book</a>
-            <a href="{{ route('books.index') }}" class="btn btn-warning">See All Books</a>
-        </div>
+        
+        @include('allMenu') 
        
         @if (Session::has('success'))
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
